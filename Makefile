@@ -6,7 +6,7 @@
 #    By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/05 00:43:12 by mjusta            #+#    #+#              #
-#    Updated: 2025/07/05 01:10:56 by mjusta           ###   ########.fr        #
+#    Updated: 2025/07/15 20:21:24 by mjusta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,19 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-SRC = main.c
+SRC_DIR = src
+INC_DIR = include
+LIBFT_DIR = libft
+
+SRC = $(SRC_DIR)/main.c
+
 OBJ = $(SRC:.c=.o)
 
-LIBFT_DIR = libft
+
+
 LIBFT = $(LIBFT_DIR)/libft.a
 
-INCLUDES = -I. -I$(LIBFT_DIR)
+INCLUDES = -I$(INC_DIR) -I$(LIBFT_DIR)/include
 
 all: $(NAME)
 

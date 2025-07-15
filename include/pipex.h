@@ -6,12 +6,14 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 00:58:51 by mjusta            #+#    #+#             */
-/*   Updated: 2025/07/05 01:06:41 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/07/15 20:24:52 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
-# include "libft/include/libft.h"
+# include "libft.h"
+# include <unistd.h>
+# include <stdio.h>
 
 #endif
