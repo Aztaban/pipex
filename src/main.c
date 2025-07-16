@@ -6,19 +6,40 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 00:43:35 by mjusta            #+#    #+#             */
-/*   Updated: 2025/07/05 01:08:20 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/07/15 20:41:33 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **envp)
 {
-	if (argc == 5)
+	int		pipefd[2];
+	pid_t	pid1;
+	pid_t	pid2;
+
+	if (argc != 5)
 	{
-		ft_printf("%s\n", argv[1]);
-		ft_printf("%s\n", argv[2]);
-		ft_printf("%s\n", argv[3]);
-		ft_printf("%s\n", argv[4]);
+		write(2, "Use: ./pipex infile cmd1 cmd2 outfile\n", 39);
+		return (1);
+
+		(void)argv;
 	}
+	if (pipe(pipefd) == -1)
+		error_exit("pipe");
+	pid1 = fork();
+	if (pid1 == -1)
+		error_exit("fork 1");
+	if (pid1 == 0)
+		child_process1(argv[1], argv[2], pipefd, envp);
+	pid2 = fork();
+	if (pid2 == -1)
+		error_exit("fork 2");
+	if (pid2 == 0)
+		child_process1(argv[4], argv[3], pipefd, envp);
+	close(pipefd[0]);
+	close(pipefd[1]);
+	waitpid(pid1, NULL, 0);
+	waitpid(pid2, NULL, 0);
+	return (0);
 }
