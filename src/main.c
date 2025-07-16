@@ -6,11 +6,12 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 00:43:35 by mjusta            #+#    #+#             */
-/*   Updated: 2025/07/15 20:41:33 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/07/16 23:00:44 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include <stdio.h>
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -22,8 +23,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		write(2, "Use: ./pipex infile cmd1 cmd2 outfile\n", 39);
 		return (1);
-
-		(void)argv;
 	}
 	if (pipe(pipefd) == -1)
 		error_exit("pipe");
