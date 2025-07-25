@@ -6,14 +6,14 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 00:43:35 by mjusta            #+#    #+#             */
-/*   Updated: 2025/07/16 23:00:44 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/07/25 15:00:25 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include <stdio.h>
 
-int	main(int argc, char **argv, char **envp)
+/* int	main(int argc, char **argv, char **envp)
 {
 	int		pipefd[2];
 	pid_t	pid1;
@@ -41,4 +41,26 @@ int	main(int argc, char **argv, char **envp)
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
 	return (0);
+} */
+
+char *get_env_path(char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (!ft_strncmp(envp[i], "PATH=", 5))
+			return (envp[i] + 5);
+		i++;
+	}
+	return (NULL);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	(void)argc;
+	(void)argv;
+	char *str = get_env_path(envp);
+	ft_printf("%s\n", str);
 }
