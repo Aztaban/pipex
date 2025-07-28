@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 00:58:51 by mjusta            #+#    #+#             */
-/*   Updated: 2025/07/28 23:53:48 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/07/29 01:21:21 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <stdio.h>
 # include <sys/wait.h>
 
-void	infile_process(char *infile, char *cmd, int pipefd[2], char **envp);
-void	outfile_process(char *outfile, char *cmd, int pipefd[2], char **envp);
+void	infile_process(char *infile, char *cmd, int *pipefd, char **envp);
+void	outfile_process(char *outfile, char *cmd, int *pipefd, char **envp);
 
 void	error_exit(const char *msg);
 char	*find_cmd_path(char *cmd, char **envp);

@@ -6,7 +6,7 @@
 #    By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/05 00:43:12 by mjusta            #+#    #+#              #
-#    Updated: 2025/07/15 20:21:24 by mjusta           ###   ########.fr        #
+#    Updated: 2025/07/29 01:36:24 by mjusta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SRC_DIR = src
 INC_DIR = include
 LIBFT_DIR = libft
 
-SRC = $(SRC_DIR)/main.c
+SRC = $(SRC_DIR)/main.c \
+			$(SRC_DIR)/helpers.c \
+			$(SRC_DIR)/process.c \
 
 OBJ = $(SRC:.c=.o)
 
