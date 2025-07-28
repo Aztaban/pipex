@@ -6,7 +6,7 @@
 #    By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/20 11:21:19 by mjusta            #+#    #+#              #
-#    Updated: 2025/06/13 18:36:16 by mjusta           ###   ########.fr        #
+#    Updated: 2025/07/28 19:56:01 by mjusta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ SRC = \
 		src/printf/ft_printf_utils.c \
 		src/gnl/get_next_line.c \
 		src/gnl/get_next_line_utils.c \
+		src/cleanup/cleanup.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

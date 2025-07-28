@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 10:47:27 by mjusta            #+#    #+#             */
-/*   Updated: 2025/06/13 01:45:12 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/07/20 23:46:03 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	ft_printf(const char *input, ...)
 	va_list	args;
 	int		count;
 
+	if (!input)
+		return (1);
 	va_start(args, input);
 	count = 0;
 	while (*input)

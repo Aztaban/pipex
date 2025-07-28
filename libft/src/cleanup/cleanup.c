@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 11:05:46 by mjusta            #+#    #+#             */
-/*   Updated: 2025/07/28 19:35:28 by mjusta           ###   ########.fr       */
+/*   Created: 2025/07/28 19:39:22 by mjusta            #+#    #+#             */
+/*   Updated: 2025/07/28 19:56:43 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "cleanup.h"
 
-# include "libft_char.h"
-# include "libft_conversion.h"
-# include "libft_list.h"
-# include "libft_memory.h"
-# include "libft_output.h"
-# include "libft_string.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include "cleanup.h"
+void	free_char_arr(char **arr)
+{
+	int	i;
 
-#endif
+	if (!arr)
+		return ;
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+}
+
+void	free_int_arr(int **arr, int len)
+{
+	int	i;
+
+	if (!arr)
+		return ;
+	i = 0;
+	while (i < len)
+		free(arr[i]);
+	free(arr);
+}

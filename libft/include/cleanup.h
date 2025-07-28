@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   cleanup.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 11:05:46 by mjusta            #+#    #+#             */
-/*   Updated: 2025/07/28 19:35:28 by mjusta           ###   ########.fr       */
+/*   Created: 2025/07/28 19:34:58 by mjusta            #+#    #+#             */
+/*   Updated: 2025/07/28 19:57:03 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef CLEANUP_H
+# define CLEANUP_H
 
-# include "libft_char.h"
-# include "libft_conversion.h"
-# include "libft_list.h"
-# include "libft_memory.h"
-# include "libft_output.h"
-# include "libft_string.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include "cleanup.h"
+# include <stdlib.h>
+
+void	free_char_arr(char **arr);
+void	free_int_arr(int **arr, int len);
 
 #endif
