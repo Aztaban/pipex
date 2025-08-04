@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 23:11:12 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/04 22:29:02 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/04 23:19:05 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,5 @@ void	last_child(char *cmd, int input_fd, int outfile_fd, char **envp)
 		execute_cmd(cmd, envp);
 	}
 	close(input_fd);
-	close(outfile_fd); 
+	close(outfile_fd);
 }
-
-
