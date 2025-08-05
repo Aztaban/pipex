@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 23:11:12 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/04 23:19:05 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/06 00:47:36 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,31 @@ void	last_child(char *cmd, int input_fd, int outfile_fd, char **envp)
 	}
 	close(input_fd);
 	close(outfile_fd);
+}
+
+int	here_doc_input(char *limiter)
+{
+	int		pipefd[2];
+	char	*line;
+	size_t	len;
+
+	if (pipe(pipefd) == -1)
+		error_exit("pipe");
+	len = ft_strlen(limiter);
+	while (1)
+	{
+		write(1, "heredoc> ", 9);
+		line = get_next_line(STDIN_FILENO);
+		if (!line)
+			break ;
+		if (!ft_strncmp(line, limiter, len) && line[len] == '\n')
+		{
+			free(line);
+			break ;
+		}
+		write(pipefd[1], line, ft_strlen(line));
+		free(line);
+	}
+	close(pipefd[1]);
+	return (pipefd[0]);
 }

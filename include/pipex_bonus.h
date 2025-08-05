@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 00:58:51 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/04 22:29:10 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/06 00:50:15 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ char	*find_cmd_path(char *cmd, char **envp);
 int		pipe_child(char *cmd, int input_fd, char **envp);
 void	last_child(char *cmd, int input_fd, int outfile_fd, char **envp);
 void	execute_cmd(char *cmd_str, char **envp);
+int		here_doc_input(char *limiter);
 
 #endif
