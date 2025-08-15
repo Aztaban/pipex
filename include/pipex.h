@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 00:58:51 by mjusta            #+#    #+#             */
-/*   Updated: 2025/07/29 01:21:21 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/15 15:36:03 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@
 void	infile_process(char *infile, char *cmd, int *pipefd, char **envp);
 void	outfile_process(char *outfile, char *cmd, int *pipefd, char **envp);
 
-void	error_exit(const char *msg);
+void	error_exit(const char *msg, int error_code);
 char	*find_cmd_path(char *cmd, char **envp);
-char	*join_path_cmd(char *path, char *cmd);
 
 #endif

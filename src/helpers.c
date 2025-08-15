@@ -6,16 +6,16 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 23:12:26 by mjusta            #+#    #+#             */
-/*   Updated: 2025/07/28 23:56:10 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/15 15:28:30 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	error_exit(const char *msg)
+void	error_exit(const char *msg, int exit_code)
 {
 	perror(msg);
-	exit(EXIT_FAILURE);
+	exit(exit_code);
 }
 
 static char	*get_env_path(char **envp)
