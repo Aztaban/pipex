@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 23:11:12 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/18 16:30:36 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/18 18:59:19 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,26 @@ static void	exec_cmd(char *cmd, char **envp)
 {
 	char	**cmd_args;
 	char	*cmd_path;
+	int		e;
 
 	cmd_args = ft_split(cmd, ' ');
 	if (!cmd_args || !cmd_args[0])
 	{
 		free_char_arr(cmd_args);
 		write(STDERR_FILENO, "pipex: invalid or empty command\n", 32);
-		exit(127);
+		_exit(127);
 	}
 	cmd_path = find_cmd_path(cmd_args[0], envp);
 	if (!cmd_path)
 	{
-		write(STDERR_FILENO, "pipex: command not found: ", 26);
+		write(STDERR_FILENO, "pipex: Command not found: ", 26);
 		write(STDERR_FILENO, cmd_args[0], ft_strlen(cmd_args[0]));
 		write(STDERR_FILENO, "\n", 1);
 		free_char_arr(cmd_args);
-		exit(127);
+		_exit(127);
 	}
 	execve(cmd_path, cmd_args, envp);
+	e = errno;
 	free(cmd_path);
 	free_char_arr(cmd_args);
 	error_exit("execve failed", 1);

@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 00:58:51 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/15 15:36:03 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/18 16:40:03 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <sys/wait.h>
+# include <errno.h>
 
 void	infile_process(char *infile, char *cmd, int *pipefd, char **envp);
 void	outfile_process(char *outfile, char *cmd, int *pipefd, char **envp);
