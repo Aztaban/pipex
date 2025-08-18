@@ -6,7 +6,7 @@
 #    By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/05 00:43:12 by mjusta            #+#    #+#              #
-#    Updated: 2025/08/04 17:25:12 by mjusta           ###   ########.fr        #
+#    Updated: 2025/08/18 16:13:59 by mjusta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,10 @@ SRC_DIR = src
 INC_DIR = include
 LIBFT_DIR = libft
 
-SRC = $(SRC_DIR)/main.c \
-			$(SRC_DIR)/helpers.c \
-			$(SRC_DIR)/process.c \
+SRC =	$(SRC_DIR)/main.c \
+		$(SRC_DIR)/helpers.c \
+		$(SRC_DIR)/process.c \
+		$(SRC_DIR)/pathfinder.c \
 
 BONUS_SRC = $(SRC_DIR)/main_bonus.c \
 			$(SRC_DIR)/helpers_bonus.c \
@@ -60,7 +61,7 @@ fclean: clean
 re: fclean all
 
 valgrind:
-	@valgrind --leak-check=full --track-origins=yes ./$(NAME) infile "grep 42" "wc -l" outfile
+	@valgrind --leak-check=full --track-origins=yes ./$(NAME) infile "grep 42" "cat" outfile
 
 norminette:
 	@norminette ./*.c ./*.h

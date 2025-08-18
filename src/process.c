@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 23:11:12 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/15 16:03:21 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/18 16:30:36 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,23 @@ void	infile_process(char *infile, char *cmd, int *pipefd, char **envp)
 		error_exit("open infile", 1);
 	dup2(fd_input, STDIN_FILENO);
 	dup2(pipefd[1], STDOUT_FILENO);
-	close(pipefd[0]);
 	close(fd_input);
+	close(pipefd[0]);
+	close(pipefd[1]);
 	exec_cmd(cmd, envp);
 }
 
 void	outfile_process(char *outfile, char *cmd, int *pipefd, char **envp)
 {
 	int		fd_output;
-	char	**cmd_args;
-	char	*cmd_path;
 
 	fd_output = open(outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd_output < 0)
 		error_exit("open outfile", 1);
 	dup2(fd_output, STDOUT_FILENO);
 	dup2(pipefd[0], STDIN_FILENO);
-	close(pipefd[1]);
 	close(fd_output);
+	close(pipefd[0]);
+	close(pipefd[1]);
 	exec_cmd(cmd, envp);
 }
