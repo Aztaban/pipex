@@ -6,27 +6,35 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 23:11:12 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/20 00:41:26 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/20 01:08:51 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	handle_exec(char *cmd_path, char **cmd_args, char **envp)
+static char	*resolve_cmd_path(char **cmd_args, char **envp)
 {
-	execve(cmd_path, cmd_args, envp);
-	free(cmd_path);
-	free_char_arr(cmd_args);
-	error_exit("execve failed", 1);
-}
+	char	*cmd_path;
 
-static void	handle_invalid_cmd(char **cmd_args)
-{
-	write(STDERR_FILENO, "pipex: Command not found: ", 26);
-	write(STDERR_FILENO, cmd_args[0], ft_strlen(cmd_args[0]));
-	write(STDERR_FILENO, "\n", 1);
-	free_char_arr(cmd_args);
-	_exit(127);
+	if (ft_strchr(cmd_args[0], '/'))
+	{
+		if (access(cmd_args[0], F_OK) != 0)
+		{
+			perror("pipex");
+			free_char_arr(cmd_args);
+			_exit(127);
+		}
+		else if (access(cmd_args[0], X_OK) != 0)
+		{
+			perror("pipex");
+			free_char_arr(cmd_args);
+			_exit(126);
+		}
+		cmd_path = ft_strdup(cmd_args[0]);
+	}
+	else
+		cmd_path = find_cmd_path(cmd_args[0], envp);
+	return (cmd_path);
 }
 
 static void	exec_cmd(char *cmd, char **envp)
@@ -38,21 +46,10 @@ static void	exec_cmd(char *cmd, char **envp)
 	if (!cmd_args || !cmd_args[0])
 	{
 		free_char_arr(cmd_args);
-		write(STDERR_FILENO, "pipex: invalid or empty command\n", 32);
+		write(STDERR_FILENO, "pipex: Command not found\n", 25);
 		_exit(127);
 	}
-	if (ft_strchr(cmd_args[0], '/'))
-	{
-		if (access(cmd_args[0], X_OK) != 0)
-		{
-			perror("pipex");
-			free_char_arr(cmd_args);
-			_exit(126);
-		}
-		cmd_path = ft_strdup(cmd_args[0]);
-	}
-	else
-		cmd_path = find_cmd_path(cmd_args[0], envp);
+	cmd_path = resolve_cmd_path(cmd_args, envp);
 	if (!cmd_path)
 		handle_invalid_cmd(cmd_args);
 	handle_exec(cmd_path, cmd_args, envp);

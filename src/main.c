@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 00:43:35 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/20 00:28:57 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/20 00:58:04 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_pipex p;
+	t_pipex	p;
 
 	if (argc != 5)
 		return (write(2, "Use: ./pipex infile cmd1 cmd2 outfile\n", 39), 1);
@@ -35,18 +35,3 @@ int	main(int argc, char **argv, char **envp)
 	close(p.pipefd[1]);
 	return (handle_children(p.pid2));
 }
-
-/* int	main(int argc, char **argv, char **envp)
-{
-	(void)argc;
-	(void)argv;
-	//char *str = find_cmd_path("wc", envp);
-	int i = 0;
-	while (envp[i])
-	{	
-		printf("%s\n", envp[i]);
-		i++;
-	}
-	//ft_printf("%s\n", str);
-	//free(str);
-} */
