@@ -6,19 +6,39 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 00:43:35 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/20 00:58:04 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/20 17:22:59 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h>
 
+/**
+ * @brief Entry point for the pipex program
+ * 
+ * This program simulates shell piping with two commands:
+ *    ./pipex infile cmd1 cmd2 outfile
+ * 
+ * - Opens the input file and redirects it to the first command.
+ * 
+ * - Pipes the output of the first command into the second.
+ * 
+ * - Redirects the output of the second command into the output file.
+ *
+ * @param argc Argument count (should be 5)
+ * @param argv Argument vector: [infile, cmd1, cmd2, outfile]
+ * @param envp Environment variables
+ *
+ * @return 0 on success, 1 on error
+ */
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	p;
 
 	if (argc != 5)
-		return (write(2, "Use: ./pipex infile cmd1 cmd2 outfile\n", 39), 1);
+	{
+		ft_putstr_fd("Use: ./pipex infile cmd1 cmd2 outfile\n", 2);
+		return (1);
+	}
 	if (pipe(p.pipefd) == -1)
 		error_exit("pipe", 1);
 	p.pid1 = fork();
