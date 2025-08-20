@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 00:43:35 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/20 01:52:28 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/20 14:24:40 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 static int	piper(int argc, char **argv, char **envp)
-{	
+{
 	int		prev_fd;
 	int		output_fd;
 	int		i;
