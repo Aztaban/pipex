@@ -6,12 +6,20 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:55:47 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/20 14:26:58 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/20 21:50:42 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
+/**
+ * @brieg Extracts the PATH enviroment variable.
+ * 
+ * Iterates over @p envp until it finds variable with "PATH="
+ * 
+ * @param envp Enviroment variables array.
+ * @return Pointer to PATH string or NULL if missing.
+ */
 static char	*get_env_path(char **envp)
 {
 	int	i;
@@ -26,6 +34,15 @@ static char	*get_env_path(char **envp)
 	return (NULL);
 }
 
+/**
+ * @brief Joins a directory path with command name.
+ * 
+ * Allocates and returns a new string "path/cmd"
+ * 
+ * @param path Directory path
+ * @param cmd Command name
+ * @return "path/cmd" string (Malloc'ed) or NULL on allocation failure.
+ */
 static char	*get_full_path(char *path, char *cmd)
 {
 	char	*temp;
@@ -39,6 +56,16 @@ static char	*get_full_path(char *path, char *cmd)
 	return (result);
 }
 
+/**
+ * @brief Search for command in an array of paths.
+ * 
+ * For each directory in @p paths, build "dir/cmd" and checks whether
+ * it is executable.
+ * 
+ * @param paths NULL terminated array of paths strings.
+ * @param cmd Command name to search for.
+ * @return Full path string (malloc'ed) if found or NULL.
+ */
 static char	*search_in_path(char **paths, char *cmd)
 {
 	char	*full_path;
@@ -56,6 +83,18 @@ static char	*search_in_path(char **paths, char *cmd)
 	return (NULL);
 }
 
+/**
+ * @brief Resolves a command name into a full executable path.
+ * 
+ * - If @p cmd contains a '/' (absolute path), checks it directly with access(2).
+ * 
+ * - Otherwise, extracts PATH from enviroment and searches each path for an 
+ *   executable matching @p cmd.
+ * 
+ * @param cmd Command name (absolute path or just a command)
+ * @param envp Enviromental variables.
+ * @return String with resolved path (Malloc'ed), or NULL if not found.
+ */
 char	*find_cmd_path(char *cmd, char **envp)
 {
 	char	*env_path;

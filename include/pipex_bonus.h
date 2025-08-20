@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 00:58:51 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/20 01:55:12 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/20 22:22:40 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <errno.h>
 
 int		pipe_child(char *cmd, int input_fd, char **envp);
-void	last_child(char *cmd, int input_fd, int outfile_fd, char **envp);
+pid_t	last_child(char *cmd, int input_fd, int outfile_fd, char **envp);
 
 int		handle_children(pid_t pid);
 void	handle_exec(char *cmd_path, char **cmd_args, char **envp);
